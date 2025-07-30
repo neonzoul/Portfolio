@@ -3,7 +3,7 @@ _*
 __*
 
 # ---Global ignore ---
-
+.*
 
 
 ##- ***env files (can opt-in for committing if needed)
