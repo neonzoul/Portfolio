@@ -5,6 +5,20 @@ __*
 # ---Global ignore ---
 .desktop.ini
 
+##- Python virtual environments
+venv/
+env/
+.venv/
+.env/
+ENV/
+env.bak/
+venv.bak/
+.virtualenv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
 ##- ***env files (can opt-in for committing if needed)
 .env*
 
