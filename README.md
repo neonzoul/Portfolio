@@ -1,4 +1,4 @@
-Hello! I'm Moss, a Software Developer specializing in **Automation and APIs**. This repository serves as my professional portfolio and a living journal of my development journey.
+Hello! I'm Moss, a Software Developer specializing in **Automation and APIs**. This repository serves as my a living journal of my development journey.
 
 I believe in **learning by building**. Every project here is a real-world solution to a tangible problem, designed to deepen my expertise and deliver practical value.
 
