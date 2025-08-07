@@ -63,7 +63,7 @@ The API provides a complete set of endpoints for managing the data hierarchy.
 
     ```bash
     git clone <your-repo-url>
-    cd coreflow-api
+    cd '.\Projects Menagement API\'
     ```
 
 2.  **Create and activate a virtual environment:**
@@ -88,3 +88,4 @@ The API provides a complete set of endpoints for managing the data hierarchy.
 
 2.  **Access the interactive documentation:**
     After the server is running, you will see **` 🕹️ API Documentation: http://127.0.0.1:8000/docs`**. From here, you can interact with all the API endpoints.
+
