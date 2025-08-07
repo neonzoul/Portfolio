@@ -1,11 +1,12 @@
 # ---- Public ignore ----
 _*
-__*
+# __*
 
 # ---Global ignore ---
 .desktop.ini
 
 ##- Python virtual environments
+__pycache__/
 venv/
 env/
 .venv/
@@ -14,7 +15,6 @@ ENV/
 env.bak/
 venv.bak/
 .virtualenv/
-__pycache__/
 *.py[cod]
 *$py.class
 *.so

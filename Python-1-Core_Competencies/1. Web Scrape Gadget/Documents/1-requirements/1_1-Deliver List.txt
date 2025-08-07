@@ -1,7 +1,0 @@
-Here is the list of deliverables for the client, organized by delivery date.
-1. Milestone Delivery (Monday, August 4, 2025)
- * BKK_Gadget_Hub_Sample.csv: A sample data file with scraped data from 5 product URLs. This is for the client to review and confirm the format and data accuracy.
-2. Final Project Handoff (Friday, August 8, 2025)
-This will be delivered as a single compressed .zip archive containing:
- * competitor_prices_2025-08-08.csv: The final, complete dataset containing all 20 requested products.
- * Project_Handoff_Report.pdf: The professional report detailing the project scope, methodology, and a data dictionary for the CSV file.
