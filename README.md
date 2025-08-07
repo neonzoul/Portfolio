@@ -1,4 +1,5 @@
-Hello! I'm Moss, a Software Developer specializing in **Automation and APIs**. This repository serves as my a living journal of my development journey.
+Hello, I'm Moss. 
+A Software Developer specializing in **Automation and APIs**. This repository serves as my a living journal of my development journey.
 
 I believe in **learning by building**. Every project here is a real-world solution to a tangible problem, designed to deepen my expertise and deliver practical value.
 
@@ -10,3 +11,4 @@ I am passionate about architecting and building the systems that power modern pr
 -   **API Design & Integration** to create seamless connections between services.
 -   **Scalable Automation Systems** that eliminate manual work and improve efficiency.
 -   **Plugin Architectures** to build modular and extensible software.
+
