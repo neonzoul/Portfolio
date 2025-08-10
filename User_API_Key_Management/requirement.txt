@@ -3,3 +3,5 @@ fastapi
 passlib[bcrypt]
 sqlmodel
 uvicorn
+pydantic-settings
+python-jose[cryptography]
