@@ -1,3 +1,7 @@
+# :Modules: Database Session & Engine
+# === Purpose ===
+# Create SQLite engine, ensure tables, and provide request-scoped sessions.
+
 from sqlmodel import SQLModel, create_engine, Session
 from sqlalchemy import inspect, text
 import re
@@ -20,7 +24,7 @@ workspace_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pard
 db_dir = os.path.join(workspace_root, "db")
 os.makedirs(db_dir, exist_ok=True)
 
-# Database URL {chage database here..}
+# Database URL {change database here if needed}
 DATABASE_URL = f"sqlite:///{os.path.join(db_dir, file_name + '.db')}"
 
 # === Create engine ===
@@ -39,6 +43,6 @@ def create_db_and_tables():
                 conn.execute(text("ALTER TABLE user ADD COLUMN hashed_password VARCHAR(255) NOT NULL DEFAULT ''"))
 
 def get_session():
-    """Get database session"""
+    """Get database session."""
     with Session(engine) as session:
         yield session

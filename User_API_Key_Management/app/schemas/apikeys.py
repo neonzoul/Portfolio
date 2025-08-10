@@ -1,3 +1,7 @@
+# :Modules: API Key Schemas
+# === Purpose ===
+# Pydantic models for API key serialization.
+
 from __future__ import annotations
 
 from datetime import datetime
@@ -14,5 +18,5 @@ class ApiKeyMeta(BaseModel):
 
 
 class ApiKeyCreateResponse(ApiKeyMeta):
-    # Only returned once on creation
+    # Only returned once on creation (do not store this server-side)
     plaintext_key: str

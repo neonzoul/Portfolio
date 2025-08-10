@@ -1,3 +1,7 @@
+# :Modules: Dependencies
+# === Purpose ===
+# Reusable FastAPI dependencies such as DB session and current user resolver.
+
 from __future__ import annotations
 
 from typing import Generator
@@ -12,16 +16,18 @@ from app.repositories.users import UserRepository
 from app.models.user import User
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")  # Bearer token (JWT)
 
 
 def get_db() -> Generator[Session, None, None]:
+    """Provide a SQLModel session per request."""
     yield from get_session()
 
 
 def get_current_user(
     db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)
 ) -> User:
+    """Resolve and return the current authenticated user from a JWT bearer token."""
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",

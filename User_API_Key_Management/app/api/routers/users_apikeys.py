@@ -1,3 +1,7 @@
+# :Modules: API Keys Router
+# === Purpose ===
+# Endpoints for users to manage their own API keys.
+
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, status
@@ -9,9 +13,10 @@ from app.schemas.apikeys import ApiKeyCreateResponse, ApiKeyMeta
 from app.services.api_keys import ApiKeyService
 
 
-router = APIRouter(prefix="/users/me/apikeys", tags=["API Keys"])
+router = APIRouter(prefix="/users/me/apikeys", tags=["API Keys"])  # === Router: API Keys ===
 
 
+# --- Create a new API key (returns plaintext once) ---
 @router.post("", response_model=ApiKeyCreateResponse, status_code=status.HTTP_201_CREATED)
 def create_my_api_key(
     db: Session = Depends(get_db),
@@ -27,6 +32,7 @@ def create_my_api_key(
     )
 
 
+# --- List all API keys for current user ---
 @router.get("", response_model=list[ApiKeyMeta])
 def list_my_api_keys(
     db: Session = Depends(get_db),
@@ -36,6 +42,7 @@ def list_my_api_keys(
     return svc.list_for_user(current_user.id)  # type: ignore[arg-type]
 
 
+# --- Revoke (delete) an API key ---
 @router.delete("/{key_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_my_api_key(
     key_id: int,

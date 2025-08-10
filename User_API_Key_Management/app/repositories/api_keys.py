@@ -1,3 +1,7 @@
+# :Modules: API Key Repository
+# === Purpose ===
+# Data access operations for ApiKeys: create, list, get, delete, count.
+
 from __future__ import annotations
 
 from typing import List, Optional
@@ -11,11 +15,13 @@ class ApiKeyRepository:
     def __init__(self, session: Session):
         self.session = session
 
+    # === Create ===
     def create(self, apikey: ApiKeys) -> ApiKeys:
         self.session.add(apikey)
         self.session.flush()
         return apikey
 
+    # === Read ===
     def get(self, key_id: int) -> Optional[ApiKeys]:
         return self.session.get(ApiKeys, key_id)
 
@@ -28,9 +34,11 @@ class ApiKeyRepository:
         )
         return list(self.session.exec(stmt))
 
+    # === Delete ===
     def delete(self, apikey: ApiKeys) -> None:
         self.session.delete(apikey)
 
+    # === Utility ===
     def count_by_user(self, user_id: int) -> int:
         stmt = select(ApiKeys).where(ApiKeys.user_id == user_id)
         return len(list(self.session.exec(stmt)))

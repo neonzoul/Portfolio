@@ -1,3 +1,7 @@
+# :Modules: Security Utilities
+# === Purpose ===
+# Password hashing/verification, API key generation+hashing, and JWT helpers.
+
 import secrets
 from datetime import datetime, timedelta, timezone
 from passlib.context import CryptContext
@@ -5,7 +9,8 @@ from jose import JWTError, jwt
 from typing import Any
 from .config import settings
 
-# Configure passlib for hashing API keys
+# === Password & API Key Hashing ===
+# Configure passlib for hashing API keys and passwords
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 # Non-secret namespace used in the visible prefix (helps users identify keys)

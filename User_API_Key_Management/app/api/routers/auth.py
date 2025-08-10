@@ -1,3 +1,7 @@
+# :Modules: Authentication Router
+# === Purpose ===
+# User registration and login endpoints.
+
 from __future__ import annotations
 
 from fastapi import APIRouter, Depends, HTTPException, status
@@ -10,9 +14,10 @@ from app.schemas.tokens import Token
 from app.schemas.users import UserCreate, UserRead
 from app.core.security import create_access_token
 
-router = APIRouter(tags=["Authentication"])
+router = APIRouter(tags=["Authentication"])  # === Router: Authentication ===
 
 
+# --- Register new user ---
 @router.post("/register", response_model=UserRead, status_code=status.HTTP_201_CREATED)
 def register_user(user_in: UserCreate, db: Session = Depends(get_db)):
     svc = UserService(db)
@@ -22,6 +27,7 @@ def register_user(user_in: UserCreate, db: Session = Depends(get_db)):
     return user
 
 
+# --- Issue JWT access token ---
 @router.post("/login", response_model=Token)
 def login_for_access_token(
     db: Session = Depends(get_db),

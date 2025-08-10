@@ -1,3 +1,7 @@
+# :Modules: User Repository
+# === Purpose ===
+# Data access operations for User: lookup by email, create.
+
 from __future__ import annotations
 
 from sqlmodel import Session, select
@@ -11,10 +15,12 @@ class UserRepository:
     def __init__(self, session: Session):
         self.session = session
 
+    # === Read ===
     def get_by_email(self, email: str) -> User | None:
         statement = select(User).where(User.email == email)
         return self.session.exec(statement).first()
 
+    # === Create ===
     def create(self, user_create: UserCreate) -> User:
         hashed_password = get_password_hash(user_create.password)
         # Populate required 'name' using email local-part as a default

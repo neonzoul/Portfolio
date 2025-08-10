@@ -1,3 +1,7 @@
+# :Modules: Token Schemas
+# === Purpose ===
+# Pydantic models for OAuth2/JWT tokens.
+
 from __future__ import annotations
 
 from pydantic import BaseModel

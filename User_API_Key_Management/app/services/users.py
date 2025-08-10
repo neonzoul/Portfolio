@@ -1,3 +1,7 @@
+# :Modules: User Service
+# === Purpose ===
+# Business logic for user authentication and creation.
+
 from __future__ import annotations
 
 from sqlmodel import Session

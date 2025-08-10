@@ -1,3 +1,7 @@
+# :Modules: API Key Service
+# === Purpose ===
+# Business logic for creating, listing, and revoking API keys.
+
 from __future__ import annotations
 
 from sqlmodel import Session

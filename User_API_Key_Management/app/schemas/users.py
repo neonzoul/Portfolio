@@ -1,3 +1,7 @@
+# :Modules: User Schemas
+# === Purpose ===
+# Pydantic models for user creation and read views.
+
 from __future__ import annotations
 
 from datetime import datetime
