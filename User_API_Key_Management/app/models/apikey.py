@@ -16,5 +16,5 @@ class ApiKeys(SQLModel, table=True):
         default_factory=lambda: datetime.now(timezone.utc), 
         index=True)
 
-    user_id: int = Field(foreign_key="users.id", index=True)
+    user_id: int = Field(foreign_key="user.id", index=True)
     user: User = Relationship(back_populates="api_keys")
