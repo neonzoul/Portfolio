@@ -1,4 +1,5 @@
 alembic
 fastapi
+passlib[bcrypt]
 sqlmodel
 uvicorn
