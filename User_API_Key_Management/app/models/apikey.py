@@ -3,13 +3,14 @@ from __future__ import annotations # Enables modern, cleaner type hints for rela
 
 from datetime import datetime, timezone
 from sqlmodel import SQLModel, Field, Relationship
-from typing import Optional
+from typing import TYPE_CHECKING
 
-from app.models.user import User
+if TYPE_CHECKING:
+    from app.models.user import User
 
 class ApiKeys(SQLModel, table=True):
 
-    id: Optional[int] = Field(default=None, primary_key=True)
+    id: int | None = Field(default=None, primary_key=True)
     key_prefix: str = Field(index=True, max_length=32)
     hashed_key: str
     created_at: datetime = Field(
@@ -18,3 +19,4 @@ class ApiKeys(SQLModel, table=True):
 
     user_id: int = Field(foreign_key="user.id", index=True)
     user: User = Relationship(back_populates="api_keys")
+

@@ -1,5 +1,6 @@
 from sqlmodel import SQLModel, create_engine, Session
 import re
+import os
 
 
 # === Create Database File ===
@@ -13,11 +14,13 @@ def validate_file_name(name: str) -> str:
     return name
 file_name: str = validate_file_name(name)
 
-# Provide db directory. 
-db_dir = "./app/db"
+# Provide db directory as absolute path (avoid sqlite open errors on relative CWD)
+workspace_root = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+db_dir = os.path.join(workspace_root, "db")
+os.makedirs(db_dir, exist_ok=True)
 
 # Database URL {chage database here..}
-DATABASE_URL = "sqlite:///{db_dir}/{file_name}.db"
+DATABASE_URL = f"sqlite:///{os.path.join(db_dir, file_name + '.db')}"
 
 # === Create engine ===
 engine = create_engine(DATABASE_URL, echo=True)
