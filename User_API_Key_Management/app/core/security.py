@@ -1,7 +1,8 @@
 import secrets
 from datetime import datetime, timedelta, timezone
 from passlib.context import CryptContext
-from jose import JWTError, jwt  # JWTError imported for future verify flows
+from jose import JWTError, jwt
+from typing import Any
 from .config import settings
 
 # Configure passlib for hashing API keys
@@ -56,3 +57,10 @@ def create_access_token(data: dict[str, object]) -> str:
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
     return encoded_jwt
+
+def decode_access_token(token: str) -> dict[str, Any] | None:
+    """Decode and verify a JWT. Returns payload dict or None if invalid/expired."""
+    try:
+        return jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+    except JWTError:
+        return None

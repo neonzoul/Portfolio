@@ -1,4 +1,5 @@
 from sqlmodel import SQLModel, create_engine, Session
+from sqlalchemy import inspect, text
 import re
 import os
 
@@ -27,6 +28,15 @@ engine = create_engine(DATABASE_URL, echo=True)
 
 def create_db_and_tables():
     SQLModel.metadata.create_all(engine)
+    # Lightweight migration: ensure 'hashed_password' exists on 'user' table
+    with engine.begin() as conn:
+        inspector = inspect(conn)
+        if 'user' in inspector.get_table_names():
+            try:
+                # Probe for column; will error if missing
+                conn.execute(text("SELECT hashed_password FROM user LIMIT 1"))
+            except Exception:
+                conn.execute(text("ALTER TABLE user ADD COLUMN hashed_password VARCHAR(255) NOT NULL DEFAULT ''"))
 
 def get_session():
     """Get database session"""

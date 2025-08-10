@@ -17,8 +17,9 @@ class UserRepository:
 
     def create(self, user_create: UserCreate) -> User:
         hashed_password = get_password_hash(user_create.password)
-        # NOTE: requires a 'hashed_password' column on User model
-        user = User(email=user_create.email, hashed_password=hashed_password)  # type: ignore[call-arg]
+        # Populate required 'name' using email local-part as a default
+        default_name = user_create.email.split("@")[0]
+        user = User(name=default_name, email=user_create.email, hashed_password=hashed_password)
         self.session.add(user)
         self.session.flush()
         return user
