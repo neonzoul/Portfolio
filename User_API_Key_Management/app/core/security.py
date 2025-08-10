@@ -1,5 +1,8 @@
 import secrets
+from datetime import datetime, timedelta, timezone
 from passlib.context import CryptContext
+from jose import JWTError, jwt  # JWTError imported for future verify flows
+from .config import settings
 
 # Configure passlib for hashing API keys
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -33,3 +36,23 @@ def verify_api_key(plain_key: str, hashed_key: str) -> bool:
     Verify a plaintext API key against a stored hash.
     """
     return pwd_context.verify(plain_key, hashed_key)
+
+# --- Password helpers ---
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    """Verify a user password against its bcrypt hash."""
+    return pwd_context.verify(plain_password, hashed_password)
+
+
+def get_password_hash(password: str) -> str:
+    """Hash a user password using bcrypt."""
+    return pwd_context.hash(password)
+
+
+# --- JWT token creation ---
+def create_access_token(data: dict[str, object]) -> str:
+    """Create a signed JWT access token with an expiration."""
+    to_encode = data.copy()
+    expire = datetime.now(timezone.utc) + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = jwt.encode(to_encode, settings.SECRET_KEY, algorithm=settings.ALGORITHM)
+    return encoded_jwt
