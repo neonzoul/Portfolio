@@ -1,4 +1,5 @@
 alembic
+email-validator
 fastapi
 passlib[bcrypt]
 sqlmodel
