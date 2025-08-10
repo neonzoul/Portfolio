@@ -47,18 +47,18 @@ venv.bak/
 Thumbs.db
 *.pem
 
-##- debug Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
+# ##- debug Logs
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+# .pnpm-debug.log*
 
-##- vercel
-.vercel
+# ##- vercel
+# .vercel
 
-##- typescript
-*.tsbuildinfo
-next-env.d.ts
+# ##- typescript
+# *.tsbuildinfo
+# next-env.d.ts
 
 
 #- IDE files
