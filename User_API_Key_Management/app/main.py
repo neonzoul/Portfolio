@@ -15,8 +15,13 @@ from app.db.session import create_db_and_tables
 # === Lifespan (startup/shutdown) ===
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    print("Starting up... creating database and tables.")
     create_db_and_tables()
+    print("🌍 Server is running!")
+    print("🕹️  API Documentation: http://127.0.0.1:8000/docs")
+    print("🕳️  Alternative docs: http://127.0.0.1:8000/redoc")
     yield
+    print("Shutting down...")
 
 
 # === FastAPI Application Setup ===
